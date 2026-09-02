@@ -16,6 +16,6 @@ class UsersController extends Controller {
         $this->call->model('UsersModel');
         $data['users'] = $this->UsersModel->getAll();
 
-        $this->load->view('users_view', $data);
+        $this->call->view('users_view', $data);
     }
 }
