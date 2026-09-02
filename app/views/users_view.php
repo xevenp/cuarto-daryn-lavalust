@@ -61,7 +61,7 @@ $users = $users ?? [];
         <header class="page-heading">
             <div>
                 <p class="eyebrow">Directory / People</p>
-                <h1>Users directory</h1>
+                <h1>Users</h1>
             </div>
             <div class="summary">
                 <strong><?= count($users); ?></strong>
