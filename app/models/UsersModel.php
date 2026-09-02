@@ -14,6 +14,6 @@ class UsersModel extends Model {
 
     public function getAll()
     {
-        return $this->db->table($this->table)->get()->getResult();
+        return $this->db->table($this->table)->get_all() ?: [];
     }
 }
