@@ -186,6 +186,8 @@ DB_PASSWORD=
 DB_NAME=sampcrud
 ```
 
+For Render, set `APP_URL` in the Render service environment to your public Render URL, for example `https://your-service.onrender.com`. Render also provides `RENDER_EXTERNAL_URL`, which is used automatically when `APP_URL` is not set. Aiven is the database host; it is not the URL used for browser redirects.
+
 For an Aiven MySQL service, use the connection values from Aiven and download its CA certificate into a file outside the public directory. Set the certificate path in `.env`:
 
 ```dotenv

@@ -79,7 +79,15 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
-$config['base_url'] = rtrim(getenv('APP_URL') ?: 'http://localhost/ACTIVITY/lavalust/', '/') . '/';
+$configured_base_url = getenv('APP_URL') ?: getenv('RENDER_EXTERNAL_URL');
+
+if (!$configured_base_url && !empty($_SERVER['HTTP_HOST'])) {
+	$forwarded_proto = $_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '';
+	$protocol = $forwarded_proto ?: ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http');
+	$configured_base_url = $protocol . '://' . $_SERVER['HTTP_HOST'];
+}
+
+$config['base_url'] = rtrim($configured_base_url ?: 'http://localhost/ACTIVITY/lavalust/', '/') . '/';
 
 /*
 |--------------------------------------------------------------------------
