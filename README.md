@@ -175,6 +175,34 @@ $database['main'] = array(
 );
 ```
 
+The application reads database values from the root `.env` file. Copy `.env.example` to `.env` and use the local MySQL defaults for Laragon:
+
+```dotenv
+DB_DRIVER=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USERNAME=root
+DB_PASSWORD=
+DB_NAME=sampcrud
+```
+
+For Render, set `APP_URL` in the Render service environment to your public Render URL, for example `https://your-service.onrender.com`. Render also provides `RENDER_EXTERNAL_URL`, which is used automatically when `APP_URL` is not set. Aiven is the database host; it is not the URL used for browser redirects.
+
+For an Aiven MySQL service, use the connection values from Aiven and download its CA certificate into a file outside the public directory. Set the certificate path in `.env`:
+
+```dotenv
+DB_DRIVER=mysql
+DB_HOST=your-aiven-host.aivencloud.com
+DB_PORT=your-aiven-port
+DB_USERNAME=avnadmin
+DB_PASSWORD=your-aiven-password
+DB_NAME=defaultdb
+DB_SSL_CA=C:/path/to/ca.pem
+DB_SSL_VERIFY=true
+```
+
+The same application code and migrations work with either configuration. Keep `.env` and the CA certificate out of version control.
+
 ### Base URL
 
 **File:** `app/config/config.php`
